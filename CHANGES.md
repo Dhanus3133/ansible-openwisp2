@@ -1,5 +1,92 @@
 # Change log
 
+## Version 25.0.0 [2025-08-15]
+
+### Features
+
+- Allow changing the celery execution pool
+- Allow restricting admin access to multiple subnets [\#481](https://github.com/Dhanus3133/ansible-openwisp2/issues/481) [\#518](https://github.com/Dhanus3133/ansible-openwisp2/issues/518)
+- Addeed openwisp2_inventory_hostname_localhost var
+
+### Changes
+
+#### Other changes
+
+- Added default sqlite timeout (10 seeconds)
+
+#### Dependencies
+
+- Bumped `django-cors-headers~=4.7.0`
+- Bumped `django-pipeline~=4.0.0`
+- Bumped `django-redis~=6.0.0`
+- Relaxed ansible-core requirement (v2.15.13 to v2.18.0)
+- Dropped support for Ubuntu 20.04 [\#517](https://github.com/Dhanus3133/ansible-openwisp2/issues/517)
+- Bumped Django~=5.2.0 and development version of OpenWISP [\#513](https://github.com/Dhanus3133/ansible-openwisp2/issues/513)
+
+### Bugfixes
+
+- Fixed "Restart freeradius" handler
+- Prioritize django templates of openwisp extensions over regular apps
+- Separate version to avoid circular import
+
+## Version 25.0.0 [2025-08-15]
+
+### Features
+
+- Allow changing the celery execution pool
+- Allow restricting admin access to multiple subnets [\#481](https://github.com/Dhanus3133/ansible-openwisp2/issues/481) [\#518](https://github.com/Dhanus3133/ansible-openwisp2/issues/518)
+- Addeed openwisp2_inventory_hostname_localhost var
+
+### Changes
+
+#### Other changes
+
+- Added default sqlite timeout (10 seeconds)
+
+#### Dependencies
+
+- Bumped `django-cors-headers~=4.7.0`
+- Bumped `django-pipeline~=4.0.0`
+- Bumped `django-redis~=6.0.0`
+- Relaxed ansible-core requirement (v2.15.13 to v2.18.0)
+- Dropped support for Ubuntu 20.04 [\#517](https://github.com/Dhanus3133/ansible-openwisp2/issues/517)
+- Bumped Django~=5.2.0 and development version of OpenWISP [\#513](https://github.com/Dhanus3133/ansible-openwisp2/issues/513)
+
+### Bugfixes
+
+- Fixed "Restart freeradius" handler
+- Prioritize django templates of openwisp extensions over regular apps
+- Separate version to avoid circular import
+
+## Version 25.0.0 [2025-08-15]
+
+### Features
+
+- Allow changing the celery execution pool
+- Allow restricting admin access to multiple subnets [\#481](https://github.com/Dhanus3133/ansible-openwisp2/issues/481) [\#518](https://github.com/Dhanus3133/ansible-openwisp2/issues/518)
+- Addeed openwisp2_inventory_hostname_localhost var
+
+### Changes
+
+#### Other changes
+
+- Added default sqlite timeout (10 seeconds)
+
+#### Dependencies
+
+- Bumped `django-cors-headers~=4.7.0`
+- Bumped `django-pipeline~=4.0.0`
+- Bumped `django-redis~=6.0.0`
+- Relaxed ansible-core requirement (v2.15.13 to v2.18.0)
+- Dropped support for Ubuntu 20.04 [\#517](https://github.com/Dhanus3133/ansible-openwisp2/issues/517)
+- Bumped Django~=5.2.0 and development version of OpenWISP [\#513](https://github.com/Dhanus3133/ansible-openwisp2/issues/513)
+
+### Bugfixes
+
+- Fixed "Restart freeradius" handler
+- Prioritize django templates of openwisp extensions over regular apps
+- Separate version to avoid circular import
+
 ## Version 24.11.1 [2024-11-27]
 
 ### Bugfixes
