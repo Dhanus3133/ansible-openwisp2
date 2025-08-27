@@ -12,6 +12,8 @@
     openwisp2_uwsgi_extra_conf: |
       single-interpreter=True
     openwisp2_usage_metric_collection: false
+    openwisp2_extra_python_packages:
+      - selenium
     freeradius_eap_orgs:
       - name: openwisp
         uuid: 00000000-0000-0000-0000-000000000000
@@ -26,6 +28,26 @@
         update_cache: true
         cache_valid_time: 600
       when: ansible_os_family == 'Debian'
+
+    - name: Install Firefox
+      vars:
+        _firefox_package_name: "{{ 'firefox-esr' if ansible_distribution == 'Debian' else 'firefox' }}"
+      apt:
+        name:
+          - "{{ _firefox_package_name }}"
+          - xvfb
+          - dbus-x11
+          - libxtst6
+        state: present
+
+    - name: Manually install geckodriver
+      block:
+        - name: Download and unarchive latest geckodriver
+          ansible.builtin.unarchive:
+            src: "https://github.com/mozilla/geckodriver/releases/download/v0.36.0/geckodriver-v0.36.0-linux64.tar.gz"
+            dest: "/tmp/"
+            remote_src: true
+            creates: "/tmp/geckodriver"
 
     - name: Install net-tools
       apt:
