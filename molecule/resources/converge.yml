@@ -29,6 +29,14 @@
         cache_valid_time: 600
       when: ansible_os_family == 'Debian'
 
+    - name: Install Firefox
+      vars:
+        _firefox_package_name: "{{ 'firefox-esr' if ansible_distribution == 'Debian' else 'firefox' }}"
+      apt:
+        name:
+          - "{{ _firefox_package_name }}"
+        state: present
+
     - name: Manually install geckodriver
       block:
         - name: Download and unarchive latest geckodriver
