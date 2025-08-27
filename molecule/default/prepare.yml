@@ -1,0 +1,11 @@
+---
+
+- name: Prepare
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install test dependencies
+      pip:
+        requirements: /opt/openwisp2/requirements-test.txt
+        virtualenv: /opt/openwisp2/env/
