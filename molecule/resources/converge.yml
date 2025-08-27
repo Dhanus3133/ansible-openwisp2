@@ -29,13 +29,37 @@
         cache_valid_time: 600
       when: ansible_os_family == 'Debian'
 
-    - name: Install Firefox, geckodriver, and a virtual display for Selenium tests
+    - name: Install Selenium dependencies on Debian 11 (manual geckodriver)
+      block:
+        - name: Install Firefox and XVFB from apt
+          apt:
+            name: ['firefox-esr', 'xvfb']
+            state: present
+
+        - name: Download and unarchive latest geckodriver
+          ansible.builtin.unarchive:
+            src: "https://github.com/mozilla/geckodriver/releases/download/v0.36.0/geckodriver-v0.36.0-linux64.tar.gz"
+            dest: "/tmp/"
+            remote_src: true
+
+        - name: Move geckodriver to a directory in PATH
+          ansible.builtin.copy:
+            src: "/tmp/geckodriver"
+            dest: "/usr/local/bin/geckodriver"
+            remote_src: true
+            mode: '0755'
+      when: ansible_distribution == 'Debian' and ansible_distribution_major_version == '11'
+
+    - name: Install Selenium dependencies on other systems (from apt)
+      vars:
+        _firefox_package_name: "{{ 'firefox-esr' if ansible_distribution == 'Debian' else 'firefox' }}"
       apt:
         name:
-          - firefox-esr
+          - "{{ _firefox_package_name }}"
           - geckodriver
           - xvfb
         state: present
+      when: not (ansible_distribution == 'Debian' and ansible_distribution_major_version == '11')
 
     - name: Install net-tools
       apt:
