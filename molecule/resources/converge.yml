@@ -29,6 +29,12 @@
         cache_valid_time: 600
       when: ansible_os_family == 'Debian'
 
+    - name: Install geckodriver for Selenium tests
+      apt:
+        name:
+          - geckodriver
+        state: present
+
     - name: Install net-tools
       apt:
         name:
