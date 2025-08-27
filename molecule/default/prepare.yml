@@ -5,7 +5,13 @@
   become: true
 
   tasks:
+    - name: Install virtualenv
+      ansible.builtin.apt:
+        name: python3-virtualenv
+        state: present
+        update_cache: yes
+
     - name: Install test dependencies
-      pip:
+      ansible.builtin.pip:
         requirements: /opt/openwisp2/requirements-test.txt
         virtualenv: /opt/openwisp2/env/
