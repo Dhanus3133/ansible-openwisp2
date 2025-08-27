@@ -24,6 +24,7 @@ provisioner:
   env:
     MOLECULE_NO_LOG: false
     SELENIUM_HEADLESS: 'true'
+    GECKO_BIN: "/tmp/geckodriver"
   playbooks:
     converge: ../resources/${MOLECULE_PLAYBOOK:-converge.yml}
     verify: ../resources/verify.yml
