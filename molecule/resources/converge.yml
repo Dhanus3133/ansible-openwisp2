@@ -35,6 +35,9 @@
       apt:
         name:
           - "{{ _firefox_package_name }}"
+          - xvfb
+          - dbus-x11
+          - libxtst6
         state: present
 
     - name: Manually install geckodriver
