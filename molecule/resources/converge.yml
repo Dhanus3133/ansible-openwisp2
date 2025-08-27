@@ -29,23 +29,7 @@
         cache_valid_time: 600
       when: ansible_os_family == 'Debian'
 
-    - name: Install common Selenium dependencies (Firefox and XVFB)
-      vars:
-        _firefox_package_name: "{{ 'firefox-esr' if ansible_distribution == 'Debian' else 'firefox' }}"
-      apt:
-        name:
-          - "{{ _firefox_package_name }}"
-          - xvfb
-        state: present
-
-    - name: Attempt to install geckodriver from apt
-      apt:
-        name: geckodriver
-        state: present
-      register: apt_geckodriver_result
-      ignore_errors: true
-
-    - name: Manually install geckodriver if not available via apt
+    - name: Manually install geckodriver
       block:
         - name: Download and unarchive latest geckodriver
           ansible.builtin.unarchive:
@@ -60,8 +44,6 @@
             dest: "/usr/local/bin/geckodriver"
             remote_src: true
             mode: '0755'
-            creates: "/usr/local/bin/geckodriver"
-      when: apt_geckodriver_result.failed
 
     - name: Install net-tools
       apt:
