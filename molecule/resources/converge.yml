@@ -29,10 +29,12 @@
         cache_valid_time: 600
       when: ansible_os_family == 'Debian'
 
-    - name: Install geckodriver for Selenium tests
+    - name: Install Firefox, geckodriver, and a virtual display for Selenium tests
       apt:
         name:
+          - firefox-esr
           - geckodriver
+          - xvfb
         state: present
 
     - name: Install net-tools
