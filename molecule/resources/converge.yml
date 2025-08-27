@@ -40,7 +40,14 @@
           - libxtst6
         state: present
 
-    - name: Manually install geckodriver
+    - name: Attempt to install geckodriver from apt
+      apt:
+        name: geckodriver
+        state: present
+      register: apt_geckodriver_result
+      ignore_errors: true
+
+    - name: Manually install geckodriver if not available via apt
       block:
         - name: Download and unarchive latest geckodriver
           ansible.builtin.unarchive:
@@ -55,6 +62,7 @@
             dest: "/usr/local/bin/geckodriver"
             remote_src: true
             mode: '0755'
+      when: apt_geckodriver_result.failed
 
     - name: Install net-tools
       apt:
